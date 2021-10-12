@@ -12,20 +12,38 @@ $title = "";
 $template = "";
 
 $context = [];
+$menu = [
+    [
+        "title" => "Главная",
+        "url" => "/",
+    ],
+    [
+        "title" => "Нами",
+        "url" => "/nami",
+    ],
+    [
+        "title" => "Робин",
+        "url" => "/robin",
+    ]
+];
 
 if ($url == "/") {
     $title = "Главная";
     $template = "main.twig";
+
 } elseif (preg_match("#/nami#", $url)) {
     $title = "Нами";
-    $template = "base_image.twig";
-    $context['image'] = "/images/nami.jpg";
+    $template = "__object.twig";
+    
+    $context['base_image'] = "/images/nami.jpg";
+
 } elseif (preg_match("#/robin#", $url)) {
     $title = "Робин";
     $template = "base_image.twig"; 
-    $context['image'] = "/images/robin.jpg";
+    $context['base_image'] = "/images/robin.jpg";
 }
 
 $context['title'] = $title;
+$context['menu'] = $menu;
 
 echo $twig->render($template, $context);

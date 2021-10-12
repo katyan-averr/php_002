@@ -1,17 +1,31 @@
 <?php
 
+require_once '../vendor/autoload.php';
+
+$loader = new \Twig\Loader\FilesystemLoader('../views');
+$twig = new \Twig\Environment($loader);
+
+
 $url = $_SERVER["REQUEST_URI"];
 
+$title = "";
+$template = "";
+
+$context = [];
+
 if ($url == "/") {
-
-    
-    echo $twig->render("main.html");
+    $title = "Главная";
+    $template = "main.twig";
 } elseif (preg_match("#/nami#", $url)) {
-
-    
-    echo $twig->render("nami.html");
+    $title = "Нами";
+    $template = "base_image.twig";
+    $context['image'] = "/images/nami.jpg";
 } elseif (preg_match("#/robin#", $url)) {
-    
-    echo $twig->render("robin.html");
+    $title = "Робин";
+    $template = "base_image.twig"; 
+    $context['image'] = "/images/robin.jpg";
 }
-?>
+
+$context['title'] = $title;
+
+echo $twig->render($template, $context);

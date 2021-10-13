@@ -35,12 +35,36 @@ if ($url == "/") {
     $title = "Нами";
     $template = "__object.twig";
     
-    $context['base_image'] = "/images/nami.jpg";
+    $context['img_content'] = "/nami/image";
+    $context['info_content'] = "/nami/info";
+    $context['url'] = $url;
+
+    if(preg_match("#^/nami/image#", $url)) {
+        $template = "base_image.twig";
+
+        $context['img'] = "/images/nami.jpg";
+
+
+    } else if (preg_match("#^/nami/info#", $url)) {
+        $template = "nami_info.twig";
+    }
 
 } elseif (preg_match("#/robin#", $url)) {
     $title = "Робин";
-    $template = "base_image.twig"; 
-    $context['base_image'] = "/images/robin.jpg";
+    $template = "__object.twig";
+
+    $context['img_content'] = "/robin/image";
+    $context['info_content'] = "/robin/info";
+    $context['url'] = $url;
+
+    if(preg_match("#^/robin/image#", $url)) {
+        $template = "base_image.twig";
+
+        $context['img'] = "/images/robin.jpg";
+
+    } else if (preg_match("#^/robin/info#", $url)) {
+        $template = "robin_info.twig";
+    }
 }
 
 $context['title'] = $title;

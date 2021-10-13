@@ -1,6 +1,14 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once "../controllers/MainController.php";
+require_once "../controllers/NamiController.php";
+require_once "../controllers/NamiImageController.php";
+require_once "../controllers/NamiInfoController.php";
+//require_once "../controllers/RobinController.php";
+//require_once "../controllers/RobinImageController.php";
+//require_once "../controllers/RobinInfoController.php";
+require_once "../controllers/Controller404.php";
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
@@ -12,6 +20,7 @@ $title = "";
 $template = "";
 
 $context = [];
+$controller = new Controller404($twig);
 $menu = [
     [
         "title" => "Главная",
@@ -28,46 +37,24 @@ $menu = [
 ];
 
 if ($url == "/") {
-    $title = "Главная";
-    $template = "main.twig";
-
+    $controller = new MainController($twig);
 } elseif (preg_match("#/nami#", $url)) {
-    $title = "Нами";
-    $template = "__object.twig";
-    
-    $context['img_content'] = "/nami/image";
-    $context['info_content'] = "/nami/info";
-    $context['url'] = $url;
-
+    $controller = new NamiController($twig);
     if(preg_match("#^/nami/image#", $url)) {
-        $template = "base_image.twig";
-
-        $context['img'] = "/images/nami.jpg";
-
-
+        $controller = new NamiImageController($twig);
     } else if (preg_match("#^/nami/info#", $url)) {
-        $template = "nami_info.twig";
+        $controller = new NamiInfoController($twig);
     }
 
 } elseif (preg_match("#/robin#", $url)) {
-    $title = "Робин";
-    $template = "__object.twig";
-
-    $context['img_content'] = "/robin/image";
-    $context['info_content'] = "/robin/info";
-    $context['url'] = $url;
-
+   // $controller = new RobinController($twig);
     if(preg_match("#^/robin/image#", $url)) {
-        $template = "base_image.twig";
-
-        $context['img'] = "/images/robin.jpg";
-
+     //   $controller = new RobinImageController($twig);
     } else if (preg_match("#^/robin/info#", $url)) {
-        $template = "robin_info.twig";
+       // $controller = new RobinInfoController($twig);
     }
 }
 
-$context['title'] = $title;
-$context['menu'] = $menu;
-
-echo $twig->render($template, $context);
+if ($controller) {
+    $controller->get();
+}

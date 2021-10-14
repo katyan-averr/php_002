@@ -5,20 +5,7 @@ class RobinController extends TwigBaseController {
     public $template = "__object.twig";
     public $title = "Робин";
 
-    public $menu = [
-        [
-            "title" => "Главная",
-            "url" => "/",
-        ],
-        [
-            "title" => "Нами",
-            "url" => "/nami",
-        ],
-        [
-            "title" => "Робин",
-            "url" => "/robin",
-        ]
-    ];
+
 
     public function getContext() : array
     {

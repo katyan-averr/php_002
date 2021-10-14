@@ -5,9 +5,9 @@ require_once "../controllers/MainController.php";
 require_once "../controllers/NamiController.php";
 require_once "../controllers/NamiImageController.php";
 require_once "../controllers/NamiInfoController.php";
-//require_once "../controllers/RobinController.php";
-//require_once "../controllers/RobinImageController.php";
-//require_once "../controllers/RobinInfoController.php";
+require_once "../controllers/RobinController.php";
+require_once "../controllers/RobinImageController.php";
+require_once "../controllers/RobinInfoController.php";
 require_once "../controllers/Controller404.php";
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -47,11 +47,11 @@ if ($url == "/") {
     }
 
 } elseif (preg_match("#/robin#", $url)) {
-   // $controller = new RobinController($twig);
+   $controller = new RobinController($twig);
     if(preg_match("#^/robin/image#", $url)) {
-     //   $controller = new RobinImageController($twig);
+        $controller = new RobinImageController($twig);
     } else if (preg_match("#^/robin/info#", $url)) {
-       // $controller = new RobinInfoController($twig);
+        $controller = new RobinInfoController($twig);
     }
 }
 

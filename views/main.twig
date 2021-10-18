@@ -1,16 +1,16 @@
 {% extends "__layout.twig" %}
-
+{% import "button_layout.twig" as forms %}
 {% block content %}
 <ul class="list-group">
     <li class="list-group-item">
-        <a type="button" class="btn btn-primary" href="/nami" >Нами</a>
-        <a type="button" class="btn btn-link" href="/nami/image">Картинка</a>
-        <a type="button" class="btn btn-link" href="/nami/info">Описание</a>
+        {{ forms.input('Нами',true,"button","/nami" ) }}
+        {{ forms.input('Картинка',false,"button","/nami/image" ) }}
+        {{ forms.input('Описание',false,"button","/nami/info" ) }}
     </li>
     <li class="list-group-item">
-        <a type="button" class="btn btn-primary" href="/robin">Робин</a>
-        <a type="button" class="btn btn-link" href="/robin/image">Картинка</a>
-        <a type="button" class="btn btn-link" href="/robin/info">Описание</a>
+        {{ forms.input('Робин',true,"button","/robin" ) }}
+        {{ forms.input('Картинка',false,"button","/robin/image" ) }}
+        {{ forms.input('Описание',false,"button","/robin/info" ) }}
     </li>
 </ul>
 {% endblock %}

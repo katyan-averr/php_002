@@ -21,38 +21,22 @@ $template = "";
 
 $context = [];
 $controller = new Controller404($twig);
-$menu = [
-    [
-        "title" => "Главная",
-        "url" => "/",
-    ],
-    [
-        "title" => "Нами",
-        "url" => "/nami",
-    ],
-    [
-        "title" => "Робин",
-        "url" => "/robin",
-    ]
-];
 
 if ($url == "/") {
-    $controller = new MainController($twig);
-} elseif (preg_match("#/nami#", $url)) {
-    $controller = new NamiController($twig);
-    if(preg_match("#^/nami/image#", $url)) {
-        $controller = new NamiImageController($twig);
-    } else if (preg_match("#^/nami/info#", $url)) {
-        $controller = new NamiInfoController($twig);
-    }
+    $controller = new MainController($twig); 
+}  else if(preg_match("#^/nami/image#", $url)){
+    $controller = new NamiImageController($twig);
+} else if (preg_match("#^/nami/info#", $url)) {
+    $controller = new NamiInfoController($twig);
+} else if (preg_match("#^/nami#", $url)){ 
+    $controller = new NamiController($twig); 
 
-} elseif (preg_match("#/robin#", $url)) {
-   $controller = new RobinController($twig);
-    if(preg_match("#^/robin/image#", $url)) {
-        $controller = new RobinImageController($twig);
-    } else if (preg_match("#^/robin/info#", $url)) {
-        $controller = new RobinInfoController($twig);
-    }
+}elseif (preg_match("#^/robin/image#", $url)) {
+    $controller = new RobinImageController($twig);
+}else if (preg_match("#^/robin/info#", $url)) {
+    $controller = new RobinInfoController($twig);
+}else if (preg_match("#^/sylvan#", $url)) {
+    $controller = new RobinController($twig);
 }
 
 if ($controller) {

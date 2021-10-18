@@ -4,6 +4,8 @@ require_once "BaseController.php";
 class TwigBaseController extends BaseController {
     public $title = ""; 
     public $template = ""; 
+    public $imgActive = false; 
+    public $infoActive = false;
     public $menu = [
         [
             "title" => "Главная",

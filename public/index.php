@@ -35,7 +35,7 @@ if ($url == "/") {
     $controller = new RobinImageController($twig);
 }else if (preg_match("#^/robin/info#", $url)) {
     $controller = new RobinInfoController($twig);
-}else if (preg_match("#^/sylvan#", $url)) {
+}else if (preg_match("#^/robin#", $url)) {
     $controller = new RobinController($twig);
 }
 

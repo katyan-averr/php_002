@@ -1,8 +1,8 @@
-{% macro input(title, class = false, type = "text", url) %}
+{% macro input(title, class = false, url) %}
 {% if class == true %}
-<a type = "{{ type }}" class = "btn btn-primary" href="{{ url }}">{{ title }}</a>
+<a  class = "btn btn-primary" href="{{ url }}">{{ title }}</a>
 {% endif %}
 {% if class == false %}
-<a type = "{{ type }}" class = "btn btn-link" href="{{ url }}">{{ title }}</a>
+<a class = "btn btn-link" href="{{ url }}">{{ title }}</a>
 {% endif %}
 {% endmacro %}

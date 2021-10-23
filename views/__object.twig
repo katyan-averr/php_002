@@ -1,15 +1,16 @@
 {% extends "__layout.twig" %}
 
 {% block content %}
+
 {% import "button_layout.twig" as forms %}
 <div class="col-8">
   <h1>{{title}}</h1>
     <ul class="nav nav-pills">
       <li class="nav-item">
-        {{ forms.input('Картинка', imgActive, "button", img_content) }}
+        {{ forms.input('Картинка', imgActive, img_content) }}
       </li>
       <li class="nav-item">
-        {{ forms.input('Описание', infoActive, "button",info_content) }}
+        {{ forms.input('Описание', infoActive, info_content) }}
       </li>
     </ul>
     </div>

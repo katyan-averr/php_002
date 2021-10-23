@@ -1,16 +1,49 @@
 {% extends "__layout.twig" %}
 {% import "button_layout.twig" as forms %}
 {% block content %}
-<ul class="list-group">
+<pre>
+
+</pre>
+<div>
+    <div class="list-group-item" >
+        <div style="display: flex; justify-content: center;">
+            <img src="https://i.pinimg.com/236x/ac/87/52/ac87525344256c12473c082fbfb5f4d1--black-white-search.jpg">
+        </div>
+        <div style="display: flex; justify-content: center;">
+            {{ lady_objects[0].title }}
+        </div>
+        <div>
+            {{ forms.input('Картинка',false,"/nami/image" ) }}
+            {{ forms.input('Описание',false,"/nami/info" ) }}
+        </div>
+    </div>
     <li class="list-group-item">
-        {{ forms.input('Нами',true,"button","/nami" ) }}
-        {{ forms.input('Картинка',false,"button","/nami/image" ) }}
-        {{ forms.input('Описание',false,"button","/nami/info" ) }}
+        {{ lady_objects[1].title }}
+        <li class="list-group-item">
+            {{ forms.input('Картинка',false,"/robin/image" ) }}
+        {{ forms.input('Описание',false,"/robin/info" ) }}
+    </li>
     </li>
     <li class="list-group-item">
-        {{ forms.input('Робин',true,"button","/robin" ) }}
-        {{ forms.input('Картинка',false,"button","/robin/image" ) }}
-        {{ forms.input('Описание',false,"button","/robin/info" ) }}
+        {{ lady_objects[2].title }}
+        <li class="list-group-item">
+            {{ forms.input('Картинка',false,"" ) }}
+        {{ forms.input('Описание',false,"" ) }}
     </li>
-</ul>
+    </li>
+    <li class="list-group-item">
+        {{ lady_objects[3].title }}
+        <li class="list-group-item">
+            {{ forms.input('Картинка',false,"" ) }}
+        {{ forms.input('Описание',false,"" ) }}
+    </li>
+    </li>
+    <li class="list-group-item">
+        {{ lady_objects[4].title }}
+        <li class="list-group-item">
+            {{ forms.input('Картинка',false,"" ) }}
+        {{ forms.input('Описание',false,"" ) }}
+    </li>
+    </li>
+</div>
 {% endblock %}

@@ -1,6 +1,7 @@
 <?php
 
 require_once '../vendor/autoload.php';
+require_once '../framework/autoload.php';
 require_once "../controllers/MainController.php";
 require_once "../controllers/NamiController.php";
 require_once "../controllers/NamiImageController.php";
@@ -9,39 +10,22 @@ require_once "../controllers/RobinController.php";
 require_once "../controllers/RobinImageController.php";
 require_once "../controllers/RobinInfoController.php";
 require_once "../controllers/Controller404.php";
+require_once "../controllers/ObjectController.php"; 
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader, ["debug" => true]);
 $twig->addExtension(new \Twig\Extension\DebugExtension());
 
-$url = $_SERVER["REQUEST_URI"];
-
 $title = "";
 $template = "";
-
 $context = [];
-$controller = new Controller404($twig);
 
 $pdo = new PDO("mysql:host=localhost;dbname=outer_lady;charset=utf8", "root", "");
 
-if ($url == "/") {
-    $controller = new MainController($twig); 
-}  else if(preg_match("#^/nami/image#", $url)){
-    $controller = new NamiImageController($twig);
-} else if (preg_match("#^/nami/info#", $url)) {
-    $controller = new NamiInfoController($twig);
-} else if (preg_match("#^/nami#", $url)){ 
-    $controller = new NamiController($twig); 
+$router = new Router($twig, $pdo);
+$router->add("/", MainController::class);
+$router->add("/nami", NamiController::class);
 
-}elseif (preg_match("#^/robin/image#", $url)) {
-    $controller = new RobinImageController($twig);
-}else if (preg_match("#^/robin/info#", $url)) {
-    $controller = new RobinInfoController($twig);
-}else if (preg_match("#^/robin#", $url)) {
-    $controller = new RobinController($twig);
-}
+$router->add("/lady-object/(\d+)", ObjectController::class); 
 
-if ($controller) {
-    $controller->setPDO($pdo);
-    $controller->get();
-}
+$router->get_or_default(Controller404::class);

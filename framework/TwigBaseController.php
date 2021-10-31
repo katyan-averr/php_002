@@ -22,9 +22,8 @@ class TwigBaseController extends BaseController {
     ];
     protected \Twig\Environment $twig; 
     
-    public function __construct($twig)
-    {
-        $this->twig = $twig; 
+    public function setTwig($twig) {
+        $this->twig = $twig;
     }
     
     public function getContext() : array

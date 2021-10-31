@@ -1,5 +1,5 @@
 <?php
-require_once "TwigBaseController.php";
+//require_once "TwigBaseController.php";
 
 class NamiController extends TwigBaseController {
     public $template = "__object.twig";

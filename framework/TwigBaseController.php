@@ -3,22 +3,25 @@ require_once "BaseController.php";
 
 class TwigBaseController extends BaseController {
     public $title = ""; 
+    public $info = "";
     public $template = ""; 
+    public $description = ""; 
+    public $objectID = "";
     public $imgActive = false; 
     public $infoActive = false;
     public $menu = [
-        [
-            "title" => "Главная",
-            "url" => "/",
-        ],
-        [
-            "title" => "Нами",
-            "url" => "/nami",
-        ],
-        [
-            "title" => "Робин",
-            "url" => "/robin",
-        ]
+        // [
+        //     "title" => "Главная",
+        //     "url" => "/",
+        // ],
+        // [
+        //     "title" => "Нами",
+        //     "url" => "/nami",
+        // ],
+        // [
+        //     "title" => "Робин",
+        //     "url" => "/robin",
+        // ]
     ];
     protected \Twig\Environment $twig; 
     
@@ -30,7 +33,23 @@ class TwigBaseController extends BaseController {
     {
         $context = parent::getContext();
         $context['title'] = $this->title;
-        $context['menu'] = $this->menu;
+        $query = $this->pdo->prepare("SELECT title, id FROM lady_objects");
+        $query->execute(); 
+        $data = $query->fetchAll();
+        $context['menu'] = [
+            [
+                    "title" => "Главная",
+                    "url" => "/",
+                ]
+        ];
+        for ($i = 0; $i <= count($data) - 1; $i++){
+
+            array_push( $context['menu'], [
+                    "title" => $data[$i]['title'],
+                    "url" => "/lady_objects/".$data[$i]['id'],
+            ]);
+
+        }
 
         $url = $_SERVER["REQUEST_URI"];
         $context['url'] = $url;

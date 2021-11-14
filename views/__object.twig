@@ -7,16 +7,16 @@
   <h1>{{title}}</h1>
     <ul class="nav nav-pills">
       <li class="nav-item">
-        {{ forms.input('Картинка', imgActive, img_content) }}
+        <a class = "btn btn-link" href="/lady_objects/{{objectID}}/image">Картинка</a>
       </li>
       <li class="nav-item">
-        {{ forms.input('Описание', infoActive, info_content) }}
+        <a class = "btn btn-link" href="/lady_objects/{{objectID}}/info">Описание</a>
       </li>
     </ul>
     </div>
 <ul class = "list-group">
   {% block objectContent %}
-    
+    <p>{{description}}</p>
     {% endblock %}
 </ul>
 {% endblock %}

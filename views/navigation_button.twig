@@ -10,13 +10,13 @@
         </div>
 
         <div class="mt-2">
-            <div class="row">
-                {{ forms.input( object.title, true, object.url ) }}
+            <div class="row m-2">
+                <a class = "btn btn-primary" href="/lady_objects/{{object.id}}">{{object.title}}</a>
             </div>
-            <div>
-                {{ forms.input('Картинка', false, object.img_content ) }}
-                {{ forms.input('Описание', false, object.info_content ) }} 
-            </div> 
+            <div class="mb-4">
+                <a class = "btn btn-link" href="/lady_objects/{{object.id}}/image">Картинка</a>
+                <a class = "btn btn-link" href="/lady_objects/{{object.id}}/info">Описание</a>
+            </div>  
         </div>
     </li>
 </div>

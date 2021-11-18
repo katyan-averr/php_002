@@ -1,6 +1,7 @@
 <?php
+require_once "BaseLadyTwigController.php";
 
-class ObjectController extends TwigBaseController {
+class ObjectController extends BaseLadyTwigController {
     public $template = "__object.twig"; 
 
     public function getContext(): array

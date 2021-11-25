@@ -7,16 +7,27 @@
   <h1>{{title}}</h1>
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class = "btn btn-link" href="/lady_objects/{{objectID}}/image">Картинка</a>
+        <a class = "btn btn-link" href="/lady_objects/{{objectID}}/?show=image">Картинка</a>
       </li>
       <li class="nav-item">
-        <a class = "btn btn-link" href="/lady_objects/{{objectID}}/info">Описание</a>
+        <a class = "btn btn-link" href="/lady_objects/{{objectID}}/?show=info">Описание</a>
       </li>
     </ul>
     </div>
 <ul class = "list-group">
-  {% block objectContent %}
-    <p>{{description}}</p>
-    {% endblock %}
+
+  {% if contenttype == "image"%}
+      <img src="{{content}}" style="width: 300px; 
+      border: 1px solid silver; 
+      margin: 8px; 
+      box-shadow: 0 0 16px silver; 
+      border-radius: 16px;"/>
+      {% endif %}
+      {% if contenttype == "description"%}
+      <p>{{content}}</p>
+      {% endif %}
+      {% if contenttype == "info"%}
+      <p>{{content}}</p>
+      {% endif %}
 </ul>
 {% endblock %}

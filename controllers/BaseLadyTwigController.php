@@ -3,12 +3,12 @@
 class BaseLadyTwigController extends TwigBaseController{
     public function getContext(): array
     {
-        $contex = parent::getContext();
+        $context = parent::getContext();
 
         $query = $this->pdo->query("SELECT DISTINCT type FROM lady_objects ORDER BY 1");
         $types = $query->fetchAll();
-        $contex['types'] = $types;
+        $context['types'] = $types;
 
-        return $contex;
+        return $context;
     }
 }

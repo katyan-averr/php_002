@@ -4,12 +4,10 @@ require_once '../vendor/autoload.php';
 require_once '../framework/autoload.php';
 require_once "../controllers/MainController.php"; 
 require_once "../controllers/ObjectController.php"; 
-//require_once "../controllers/BaseLadyTwigController.php";
-//require_once "../controllers/ObjectImageController.php"; 
-//require_once "../controllers/ObjectInfoController.php"; 
 require_once "../controllers/Controller404.php";
 require_once "../controllers/SearchController.php";
 require_once "../controllers/LadyObjectCreateController.php";
+require_once "../controllers/TypeCreateController.php";
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -25,5 +23,6 @@ $router->add("/lady_objects/(?P<id>\d+/)", ObjectController::class);
 $router->add("/lady_objects/(?P<id>\d+)", ObjectController::class); 
 $router->add("/search", SearchController::class);
 $router->add("/lady_object_create", LadyObjectCreateController::class);
+$router->add("/type_create", TypeCreateController::class);
 
 $router->get_or_default(Controller404::class);

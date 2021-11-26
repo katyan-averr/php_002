@@ -1,8 +1,8 @@
 <?php
 require_once "BaseLadyTwigController.php";
 
-class LadyObjectCreateController extends BaseLadyTwigController {
-    public $template = "lady_object_create.twig";
+class TypeCreateController extends BaseLadyTwigController {
+    public $template = "type_create.twig";
 
     public function get(array $context) 
     {
@@ -13,30 +13,23 @@ class LadyObjectCreateController extends BaseLadyTwigController {
 
     public function post(array $context) { 
         $title = $_POST['title'];
-        $description = $_POST['description'];
-        $type = $_POST['type'];
-        $info = $_POST['info'];
-
         $tmp_name = $_FILES['image']['tmp_name'];
         $name =  $_FILES['image']['name'];
         move_uploaded_file($tmp_name, "../public/media/$name");
         $image_url = "/media/$name";
 
         $sql = <<<EOL
-INSERT INTO lady_objects(title, opisanie, type, info, image)
-VALUES(:title, :opisanie, :type, :info, :image_url)
+INSERT INTO lady_type(title,image)
+VALUES(:title, :image_url)
 EOL;
 
         $query = $this->pdo->prepare($sql);
         $query->bindValue("title", $title);
-        $query->bindValue("opisanie", $description);
-        $query->bindValue("type", $type);
-        $query->bindValue("info", $info);
         $query->bindValue("image_url", $image_url);
         
         $query->execute();
         
-        $context['message'] = 'Вы успешно создали объект';
+        $context['message'] = 'Вы успешно создали тип';
         $context['id'] = $this->pdo->lastInsertId();
 
         $this->get($context);

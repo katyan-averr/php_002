@@ -8,6 +8,8 @@ require_once "../controllers/ObjectController.php";
 //require_once "../controllers/ObjectImageController.php"; 
 //require_once "../controllers/ObjectInfoController.php"; 
 require_once "../controllers/Controller404.php";
+require_once "../controllers/SearchController.php";
+require_once "../controllers/LadyObjectCreateController.php";
 
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -21,6 +23,7 @@ $router = new Router($twig, $pdo);
 $router->add("/", MainController::class);
 $router->add("/lady_objects/(?P<id>\d+/)", ObjectController::class); 
 $router->add("/lady_objects/(?P<id>\d+)", ObjectController::class); 
-
+$router->add("/search", SearchController::class);
+$router->add("/lady_object_create", LadyObjectCreateController::class);
 
 $router->get_or_default(Controller404::class);

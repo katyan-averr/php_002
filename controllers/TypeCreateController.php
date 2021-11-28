@@ -3,6 +3,15 @@ require_once "BaseLadyTwigController.php";
 
 class TypeCreateController extends BaseLadyTwigController {
     public $template = "type_create.twig";
+    public $title = "Создание типа";
+
+    public function getContext(): array
+    {
+        $context = parent::getContext();
+        $query = $this->pdo->query("SELECT * FROM lady_type");
+        $context['types'] = $query->fetchAll();
+        return $context;
+    }
 
     public function get(array $context) 
     {
@@ -33,5 +42,7 @@ EOL;
         $context['id'] = $this->pdo->lastInsertId();
 
         $this->get($context);
+        header("Location: /type_create");
+        exit;
     }
 }

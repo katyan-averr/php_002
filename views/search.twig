@@ -8,8 +8,12 @@
             <div class="col">
             <select style = "height: 70%;" name="type" class="form-select form-select-lg mb-3">
                 <option value="Все">Все</option>
+                {% for type in types %}
+                <option class="nav-link" href="/?type={{ type.type }}">{{ type.type|title }}</option>
+                {% endfor %}
+                {# 
                 <option value="Антагонист">Антагонист</option>
-                <option value="Протагонист">Протагонист</option>
+                <option value="Протагонист">Протагонист</option> #}
             </select>
             </div>
     

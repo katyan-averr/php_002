@@ -23,8 +23,8 @@ class LadyObjectCreateController extends BaseLadyTwigController {
         $image_url = "/media/$name";
 
         $sql = <<<EOL
-INSERT INTO lady_objects(title, opisanie, type, info, image)
-VALUES(:title, :opisanie, :type, :info, :image_url)
+INSERT INTO lady_objects(title, opisanie, info, image, type)
+VALUES(:title, :opisanie, :info, :image_url, :type)
 EOL;
 
         $query = $this->pdo->prepare($sql);

@@ -21,19 +21,19 @@ class TypeCreateController extends BaseLadyTwigController {
     }
 
     public function post(array $context) { 
-        $title = $_POST['title'];
+        $type = $_POST['type'];
         $tmp_name = $_FILES['image']['tmp_name'];
         $name =  $_FILES['image']['name'];
         move_uploaded_file($tmp_name, "../public/media/$name");
         $image_url = "/media/$name";
 
         $sql = <<<EOL
-INSERT INTO lady_type(title,image)
-VALUES(:title, :image_url)
+INSERT INTO lady_type(type,image)
+VALUES(:type, :image_url)
 EOL;
 
         $query = $this->pdo->prepare($sql);
-        $query->bindValue("title", $title);
+        $query->bindValue("type", $type);
         $query->bindValue("image_url", $image_url);
         
         $query->execute();

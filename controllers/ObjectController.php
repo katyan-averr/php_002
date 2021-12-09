@@ -3,29 +3,18 @@ require_once "BaseLadyTwigController.php";
 
 class ObjectController extends BaseLadyTwigController {
     public $template = "__object.twig"; 
-    // public $templat = "base_image.twig";
-    // public $templa = "info.twig";
     public $content = "";
     public $contenttype = "";
 
     public function getContext(): array
     {
-
-
         $context = parent::getContext();
-        // echo "<pre>";
-        // print_r($this->params);
-        // echo "</pre>";
         
         $query = $this->pdo->prepare("SELECT image, info, opisanie, id FROM lady_objects WHERE id= :my_id");
         $query->bindValue("my_id", $this->params['id']);
         $query->execute();
         $data = $query->fetch();
         
-        //$context['title'] = $data['title'];
-        // $context['img'] = $data['image'];
-        // $context['info'] = $data['info'];
-        // $context['description'] = $data['opisanie'];
         $context['objectID'] = $data['id'];
         
         if (isset($_GET['show'])){
@@ -41,7 +30,7 @@ class ObjectController extends BaseLadyTwigController {
             $context['contenttype'] = "description";
             $context['content'] = $data['opisanie'];
         }
-
+        $context["my_session_message"] = $_SESSION["welcome_message"];
         return $context;
     }
 }

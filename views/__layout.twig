@@ -39,15 +39,36 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/type_create">Добавить тип</a>
                 </li>
+                <form action = "/exit" method="post">
+                    <button type = "submit" class="btn btn-light">   
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </form>
                 </ul>
-            </div>
+                <form action="/set_welcome/">
+                </form>
+            </div>        
         </div>
     </nav>
 
     <div class="container">
-        {% block content %}
-        пустота
-        {% endblock %}
+        <div class="row align-items-start">
+            <div class="col-9 align-self-start">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-3 mt-4">
+                <p style="font-size: 1.25rem;">
+                    Последние просмотренные страницы:
+                </p>
+                <div class="list-group">
+                    {% for m in viewed_pages %}
+                    <li class="list-group-item list-group-item-action list-group-item-dark">
+                        {{m}}
+                    </li>
+                    {% endfor %}
+                </div>
+            </div>
     </div>
 </body>
 
